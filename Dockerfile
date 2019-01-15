@@ -11,7 +11,7 @@ RUN pip install tensor2tensor gym[atari] pygame && \
 
 # OpenSSH stuff.
 RUN mkdir /var/run/sshd
-RUN echo 'root:root' | chpasswd
+
 RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' \
         /etc/ssh/sshd_config
 # SSH login fix. Otherwise user is kicked off after login.
@@ -36,4 +36,4 @@ RUN echo "export LD_LIBRARY_PATH=/usr/local/nvidia/lib64" >> ~/.zshrc && \
 
 # Install t2t from mounted volume in develop mode. This is possible only after
 # starting the container.
-ENTRYPOINT cd /t2t && python setup.py develop && /usr/sbin/sshd -D
+ENTRYPOINT echo "root:$PASSWORD" | chpasswd && cd /t2t && python setup.py develop && /usr/sbin/sshd -D
