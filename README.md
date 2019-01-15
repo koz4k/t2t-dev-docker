@@ -4,7 +4,7 @@ Instructions for setting up docker on remote machine.
 
 Variables:
 ```
-export $HOST=...
+export $HOST=user@ip
 export $PORT=2223  # define locally, and on remote
 ```
 
@@ -31,7 +31,7 @@ mkdir data  # Keep experiment data here.
 #       data -> /data
 #       tensor2tensor -> /t2t
 # Note that this script is simple to modify.
-bash t2t-dev-docker/run.sh awarelab/t2t-dev $PORT
+bash t2t-dev-docker/run.sh awarelab/t2t-dev $PORT YOUR_PASSWORD
 ```
 
 #### 2) Log into docker.
